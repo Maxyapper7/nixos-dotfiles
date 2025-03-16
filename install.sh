@@ -34,4 +34,7 @@ $EDITOR $SCRIPT_DIR/flake.nix;
 sudo nixos-rebuild switch --flake /home/max/dotfiles;
 
 # Install and build home-manager configuration
-home-manager switch --flake ~/dotfiles;
+nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+nix-channel --update
+nix-shell '<home-manager>' -A install
+home-manager switch --flake ~/dotfiles
