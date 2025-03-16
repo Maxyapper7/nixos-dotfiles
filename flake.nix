@@ -29,6 +29,7 @@
         locale = "en_US.UTF-8";
         bootMode = "uefi"; 
         bootMountPath = "/boot";
+        system = "x86_64-linux";
       };
 
       # ----- USER SETTINGS ----- #
@@ -42,17 +43,16 @@
         browser = "firefox";
       };
 
-      system = "x86_64-linux";
       lib = nixpkgs.lib;
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = nixpkgs.legacyPackages.${systemSettings.system};
       supportedSystems = [ "aarch64-linux" "i686-linux" "x86_64-linux" ];
       forAllSystems = inputs.nixpkgs.lib.genAttrs supportedSystems;
       nixpkgsFor =
         forAllSystems (system: import inputs.nixpkgs { inherit system; });
     in {
       nixosConfigurations = {
-        nixos = lib.nixosSystem {
-          inherit system;
+        system = lib.nixosSystem {
+          system = systemSettings.system;
           specialArgs = { inherit inputs; inherit systemSettings; inherit userSettings; };
           modules = [
             ./configuration.nix
@@ -63,7 +63,7 @@
       };
 
       homeConfigurations = {
-        max = home-manager.lib.homeManagerConfiguration {
+        user = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = { inherit inputs; inherit userSettings; };
           modules = [
