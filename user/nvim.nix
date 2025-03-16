@@ -21,6 +21,7 @@
         enableTreesitter = true;
 
         nix.enable = true;
+        bash.enable = true;
       };
 
       options = {
