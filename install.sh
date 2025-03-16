@@ -10,7 +10,7 @@ if [ $# -gt 0 ]
   else
     SCRIPT_DIR=~/dotfiles
 fi
-nix-shell -p git --command "https://github.com/Maxyapper7/nixos-dotfiles.git $SCRIPT_DIR"
+nix-shell -p git --command "git clone https://github.com/Maxyapper7/nixos-dotfiles.git $SCRIPT_DIR"
 
 # Generate hardware config for new system
 sudo nixos-generate-config --show-hardware-config > $SCRIPT_DIR/system/hardware-configuration.nix
