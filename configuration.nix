@@ -20,7 +20,7 @@
   boot.loader.grub.device = systemSettings.grubDevice; # does nothing if running uefi rather than bios
 
   # Enable networking
-  networking.hostName = systemSettings.hostName;
+  networking.hostName = systemSettings.hostname;
   networking.networkmanager.enable = true;
 
   # Locale Settings
