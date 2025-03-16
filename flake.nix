@@ -21,6 +21,26 @@
 
   outputs = { self, nixpkgs, home-manager, hyprland, nixos-hardware, auto-cpufreq, stylix, nvf, ... }@inputs:
     let
+
+      # ---- SYSTEM SETTINGS ---- #
+      systemSettings = {
+        hostname = "Oakland";
+        timezone = "America/Denver";
+        locale = "en_US.UTF-8";
+        bootMode = "uefi"; 
+        bootMountPath = "/boot";
+      };
+
+      # ----- USER SETTINGS ----- #
+      userSettings = {
+        username = "max";
+        name = "Max";
+        dotfilesDir = "~/dotfiles";
+        term = "kitty";
+        editor = "nvim";
+        spawnEditor = "nvim";
+      };
+
       system = "x86_64-linux";
       lib = nixpkgs.lib;
       pkgs = nixpkgs.legacyPackages.${system};
@@ -32,7 +52,7 @@
       nixosConfigurations = {
         nixos = lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs; inherit systemSettings; inherit userSettings; };
           modules = [
             ./configuration.nix
             nixos-hardware.nixosModules.framework-12th-gen-intel
@@ -44,7 +64,7 @@
       homeConfigurations = {
         max = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = { inherit inputs; };
+          extraSpecialArgs = { inherit inputs; inherit userSettings; };
           modules = [
             ./home.nix 
             inputs.nvf.homeManagerModules.default

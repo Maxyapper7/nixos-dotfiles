@@ -1,11 +1,10 @@
-{ config, pkgs, ... }:
+{ config, pkgs, systemSettings, userSettings, ... }:
 
 {
   imports =
     [
       ./system/hardware-configuration.nix
       ./system/hyprland.nix
-      ./system/random.nix
       ./system/gaming.nix
       ./system/bluetooth.nix
       ./system/stylix.nix
@@ -13,11 +12,30 @@
       ./system/smb.nix
     ];
 
-  networking.hostName = "nixos"; # Define your hostname.
-
+  # Bootloader
+  boot.loader.systemd-boot.enable = if (systemSettings.bootMode == "uefi") then true else false;
+  boot.loader.efi.canTouchEfiVariables = if (systemSettings.bootMode == "uefi") then true else false;
+  boot.loader.efi.efiSysMountPoint = systemSettings.bootMountPath; # does nothing if running bios rather than uefi
+  boot.loader.grub.enable = if (systemSettings.bootMode == "uefi") then false else true;
+  boot.loader.grub.device = systemSettings.grubDevice; # does nothing if running uefi rather than bios
 
   # Enable networking
+  networking.hostName = systemSettings.hostName;
   networking.networkmanager.enable = true;
+
+  time.timeZone = systemSettings.timezone; # time zone
+  i18n.defaultLocale = systemSettings.locale;
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = systemSettings.locale;
+    LC_IDENTIFICATION = systemSettings.locale;
+    LC_MEASUREMENT = systemSettings.locale;
+    LC_MONETARY = systemSettings.locale;
+    LC_NAME = systemSettings.locale;
+    LC_NUMERIC = systemSettings.locale;
+    LC_PAPER = systemSettings.locale;
+    LC_TELEPHONE = systemSettings.locale;
+    LC_TIME = systemSettings.locale;
+  };
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
@@ -30,11 +48,26 @@
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.max = {
+  users.users.${userSettings.username} = {
     isNormalUser = true;
-    description = "Max Allred";
+    description = userSettings.name;
     extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.zsh;
+    uid = 1000;
+  };
+
+  # Configure keymap in X11
+  services.xserver.xkb = {
+    layout = "us";
+    variant = "";
+  };
+
+  # Enable CUPS to print documents.
+  services.printing.enable = true;
+
+  programs.starship = {
+    enable = true;
+    presets = [ "nerd-font-symbols" ];
   };
 
   programs.zsh.enable = true;
@@ -61,7 +94,8 @@
     };
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
-#      download-buffer-size = 500000000; # 500MB
+      trusted-users = [ "@wheel" ];
+      download-buffer-size = 500000000; # 500MB
     };
   };
 
