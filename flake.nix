@@ -39,6 +39,7 @@
         term = "kitty";
         editor = "nvim";
         spawnEditor = "nvim";
+        browser = "firefox";
       };
 
       system = "x86_64-linux";
