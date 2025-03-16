@@ -23,6 +23,7 @@
   networking.hostName = systemSettings.hostName;
   networking.networkmanager.enable = true;
 
+  # Locale Settings
   time.timeZone = systemSettings.timezone; # time zone
   i18n.defaultLocale = systemSettings.locale;
   i18n.extraLocaleSettings = {
@@ -56,19 +57,23 @@
     uid = 1000;
   };
 
+  # Starship Setup
+  programs.starship = {
+    enable = true;
+    presets = [ "nerd-font-symbols" ];
+  };
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
     variant = "";
   };
 
-  # Enable CUPS to print documents.
+  # Enable Priting
   services.printing.enable = true;
-
-  programs.starship = {
-    enable = true;
-    presets = [ "nerd-font-symbols" ];
-  };
+  services.avahi.enable = true;
+  services.avahi.nssmdns4 = true;
+  services.avahi.openFirewall = true;
 
   programs.zsh.enable = true;
 
@@ -76,9 +81,10 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    vim
-    git
+    cups-filters
     curl
+    git
+    vim
     wget
   ];
 
