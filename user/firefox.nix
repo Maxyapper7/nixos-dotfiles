@@ -55,7 +55,7 @@ programs.firefox = {
         "signon.rememberSignons" = false;
       };
 
-      search.default = "DuckDuckGo";
+      search.default = "ddg";
 
     };
   };
