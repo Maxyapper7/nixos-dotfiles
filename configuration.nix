@@ -85,6 +85,7 @@
     git
     vim
     wget
+    killall
   ];
 
   fonts.packages = with pkgs; [
