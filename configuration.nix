@@ -86,6 +86,7 @@
     vim
     wget
     killall
+    discord
   ];
 
   fonts.packages = with pkgs; [
