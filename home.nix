@@ -42,6 +42,7 @@
   };
   xdg.mime.enable = true;
   xdg.mimeApps.enable = true;
+  xdg.configFile."mimeapps.list".force = true;
 
   news.display = "silent";
   programs.home-manager.enable = true;

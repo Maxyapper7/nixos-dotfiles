@@ -2,7 +2,7 @@
 let
 
   myAliases = {
-    hms = "rm -rf ~/.mozilla/firefox/${userSettings.username}/search*; home-manager switch --flake ~/dotfiles#user";
+    hms = "home-manager switch --flake ~/dotfiles#user";
     nrs = "sudo nixos-rebuild switch --flake /home/${userSettings.username}/dotfiles#system";
     updt = "nix flake update --flake ~/dotfiles";
     ls = "eza --icons -l -T -L=1";
