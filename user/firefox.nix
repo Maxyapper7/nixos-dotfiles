@@ -56,6 +56,7 @@ programs.firefox = {
       };
 
       search.default = "ddg";
+      search.force = true;
 
     };
   };
