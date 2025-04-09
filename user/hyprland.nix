@@ -39,10 +39,13 @@
   programs.rofi.enable = true;
   programs.waybar.enable = true;
 
-  dconf.settings = {
-    "org/gnome/desktop/interface" = {
-      cursor-theme = "capitaine-cursors";
-    };
+  home.pointerCursor = {
+    gtk.enable = true;
+    x11.enable = true;
+    hyprcursor.enable = true;
+    name = "capitaine-cursors";
+    size = 24;
+    package = pkgs.capitaine-cursors;
   };
 
 
