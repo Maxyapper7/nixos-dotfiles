@@ -5,6 +5,7 @@
   home.packages = with pkgs; [
     onlyoffice-desktopeditors
     spotify
+    anki-bin
   ];
 
   programs.chromium = {
