@@ -26,6 +26,10 @@ programs.firefox = {
           install_url = "https://addons.mozilla.org/en-US/firefox/downloads/latest/tabliss/latest.xpi";
           installation_mode = "force_installed";
         };
+        "support@todoist.com" = {
+          install_url = "https://addons.mozilla.org/en-US/firefox/downloads/latest/todoist/latest.xpi";
+          installation_mode = "force_installed";
+        };
         "uBlock0@raymondhill.net" = {
           install_url = "https://addons.mozilla.org/en-US/firefox/downloads/latest/ublock-origin/latest.xpi";
           installation_mode = "force_installed";
