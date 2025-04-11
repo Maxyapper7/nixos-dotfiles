@@ -62,7 +62,7 @@
     presets = [ "nerd-font-symbols" ];
   };
 
-  # Configure keymap in X11
+  # Configure keymap
   services.xserver.xkb = {
     layout = "us";
     variant = "";
