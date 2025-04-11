@@ -16,6 +16,9 @@
 
   services.gvfs.enable = true;
 
+  programs.nautilus-open-any-terminal.enable = true;
+  programs.nautilus-open-any-terminal.terminal = "kitty";
+
   programs.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
