@@ -12,6 +12,7 @@ let
     neofetch = "disfetch";
     fetch = "disfetch";
     tailup = "sudo tailscale up --accept-routes";
+    tailupexit = "sudo tailscale up --accept-routes --exit-node unraid";
     taildown = "sudo tailscale down";
     "," = "comma";
   };
