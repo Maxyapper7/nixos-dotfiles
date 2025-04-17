@@ -48,10 +48,10 @@
 
   };
 
-
-  ### Fingerprint BS ###
+  ### BIOS Updates ###
   services.fwupd.enable = true;
 
+  ### Fingerprint BS ###
   services.fprintd = {
     enable = true;
     tod = {
