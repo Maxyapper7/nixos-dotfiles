@@ -7,19 +7,14 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     stylix.url = "github:danth/stylix";
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nvf.url = "github:notashelf/nvf";
-
-    auto-cpufreq = {
-      url = "github:AdnanHodzic/auto-cpufreq";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
   };
 
-  outputs = { self, nixpkgs, home-manager, hyprland, nixos-hardware, auto-cpufreq, stylix, nvf, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, hyprland, nixos-hardware, stylix, nvf, ... }@inputs:
     let
 
       # ---- SYSTEM SETTINGS ---- #
@@ -53,10 +48,9 @@
       nixosConfigurations = {
         system = lib.nixosSystem {
           system = systemSettings.system;
-          specialArgs = { inherit inputs; inherit systemSettings; inherit userSettings; };
+          specialArgs = { inherit inputs; inherit systemSettings; inherit userSettings; inherit nixos-hardware; };
           modules = [
             ./configuration.nix
-            nixos-hardware.nixosModules.framework-12th-gen-intel
             stylix.nixosModules.stylix
           ];
         };

@@ -9,6 +9,7 @@
       ./system/bluetooth.nix
       ./system/stylix.nix
       ./system/tailscale.nix
+      ./system/framework.nix
     ];
 
   # Bootloader
