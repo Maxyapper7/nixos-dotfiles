@@ -92,6 +92,7 @@
 
   fonts.packages = with pkgs; [
     nerd-fonts.meslo-lg
+    noto-fonts-cjk-sans
   ];
 
   nix = {
