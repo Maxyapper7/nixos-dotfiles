@@ -1,4 +1,4 @@
-{ pkgs, ... }: 
+{ pkgs, userSettings, ... }: 
 
 {
 
@@ -8,13 +8,10 @@
     autoEnable = true;
     cursor = {
       package = pkgs.capitaine-cursors;
-      name = "capitaine-cursors";
-      size = 32;
+      name = userSettings.cursorTheme; 
+      size = userSettings.cursorSize;
     };
 
   };
-
-
-
 
 }

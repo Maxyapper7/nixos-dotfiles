@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, userSettings, ... }:
 
 {
 
@@ -43,11 +43,15 @@
     gtk.enable = true;
     x11.enable = true;
     hyprcursor.enable = true;
-    name = "capitaine-cursors";
-    size = 24;
-    package = pkgs.capitaine-cursors;
+    name = userSettings.cursorTheme;
+    size = userSettings.cursorSize;
+    package = builtins.getAttr userSettings.cursorTheme pkgs;
   };
 
+  home.sessionVariables = {
+    XCURSOR_THEME = userSettings.cursorTheme;
+    XCURSOR_SIZE = "${toString userSettings.cursorSize}";
+  };
 
   home.file = {
     ".config/hypr".source = ../dotfiles/hypr;

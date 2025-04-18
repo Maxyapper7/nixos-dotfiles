@@ -36,6 +36,8 @@
         editor = "nvim";
         spawnEditor = "nvim";
         browser = "firefox";
+        cursorTheme = "capitaine-cursors";
+        cursorSize = 24;
       };
 
       lib = nixpkgs.lib;

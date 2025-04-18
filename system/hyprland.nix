@@ -1,4 +1,4 @@
-{ pkgs, lib, inputs, ... }:
+{ pkgs, lib, inputs, userSettings, ... }:
 
 {
 
@@ -13,6 +13,12 @@
       wayland = true;
     };
   };
+
+  environment.sessionVariables = {
+    XCURSOR_THEME = userSettings.cursorTheme;
+    XCURSOR_SIZE = "${toString userSettings.cursorSize}";
+  };
+
 
   services.gvfs.enable = true;
 
