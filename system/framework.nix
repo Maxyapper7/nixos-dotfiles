@@ -24,13 +24,14 @@
   services.fwupd.uefiCapsuleSettings.DisableCapsuleUpdateOnDisk = true;
 
   ### Fingerprint BS ###
-  # services.fprintd = {
-  #   enable = true;
-  #   tod = {
-  #     enable = true;
-  #     driver = pkgs.libfprint-2-tod1-vfs0090;
-  #   };
-  # };
-
-
+  services.fprintd.enable = true;
+  environment.systemPackages = [ pkgs.libfprint-2-tod1-goodix ];
+  security.polkit.extraConfig = ''
+    polkit.addRule(function(action, subject) {
+      if (action.id == "net.reactivated.fprint.device.enroll" &&
+          subject.isInGroup("wheel")) {
+        return polkit.Result.YES;
+      }
+    });
+  '';
 }
