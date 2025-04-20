@@ -20,6 +20,7 @@
       # ---- SYSTEM SETTINGS ---- #
       systemSettings = {
         hostname = "Oakland";
+        device = "framework";
         timezone = "America/Denver";
         locale = "en_US.UTF-8";
         bootMode = "uefi"; 
