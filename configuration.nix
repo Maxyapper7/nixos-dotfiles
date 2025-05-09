@@ -19,6 +19,30 @@
   boot.loader.grub.enable = if (systemSettings.bootMode == "uefi") then false else true;
   boot.loader.grub.device = systemSettings.grubDevice; # does nothing if running uefi rather than bios
 
+  # Plymouth 
+  boot = {
+    plymouth = {
+      enable = true;
+      theme = "pie";
+      themePackages = with pkgs; [
+        (adi1090x-plymouth-themes.override {
+          selected_themes = [ "pie" ];
+        })
+      ];
+    };
+    consoleLogLevel = 3;
+    initrd.verbose = false;
+    kernelParams = [
+      "quiet"
+      "splash"
+      "boot.shell_on_fail"
+      "udev.log_priority=3"
+      "rd.systemd.show_status=auto"
+    ];
+    loader.timeout = 0;
+
+  };
+
   # Enable networking
   networking.hostName = systemSettings.hostname;
   networking.networkmanager.enable = true;

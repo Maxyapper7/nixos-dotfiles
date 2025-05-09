@@ -12,6 +12,12 @@
       size = userSettings.cursorSize;
     };
 
+    targets = {
+      plymouth = {
+        enable = false;
+      };
+    };
+
   };
 
 }
