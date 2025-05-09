@@ -10,6 +10,7 @@
       ./system/stylix.nix
       ./system/tailscale.nix
       ./system/framework.nix
+      ./system/vm.nix
     ];
 
   # Bootloader
