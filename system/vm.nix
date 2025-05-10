@@ -1,17 +1,16 @@
 { pkgs, lib, inputs, userSettings, ... }:
 
 {
-
   programs.dconf.enable = true;
 
   environment.systemPackages = with pkgs; [
-    virt-manager
-    virt-viewer
     spice 
     spice-gtk
     spice-protocol
-    win-virtio
+    virt-manager
+    virt-viewer
     win-spice
+    win-virtio
   ];
 
   virtualisation = {
