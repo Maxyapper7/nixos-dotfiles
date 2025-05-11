@@ -5,6 +5,7 @@ let
     hms = "home-manager switch --flake ~/dotfiles#user";
     nrs = "sudo nixos-rebuild switch --flake /home/${userSettings.username}/dotfiles#system";
     updt = "nix flake update --flake ~/dotfiles";
+    nixgc = "nix-collect-garbage --delete-older-than 10d";
     ls = "eza --icons -l -T -L=1";
     cat = "bat";
     htop = "btm";
