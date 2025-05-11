@@ -49,7 +49,8 @@
   networking.networkmanager.enable = true;
 
   # Locale Settings
-  time.timeZone = systemSettings.timezone; # time zone
+  # time.timeZone = systemSettings.timezone; # time zone
+  services.automatic-timezoned.enable = true;
   i18n.defaultLocale = systemSettings.locale;
   i18n.extraLocaleSettings = {
     LC_ADDRESS = systemSettings.locale;
