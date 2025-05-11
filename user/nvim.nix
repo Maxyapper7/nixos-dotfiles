@@ -16,8 +16,8 @@
         mappings.findFiles = "<leader><leader>";
       };
 
+      lsp.enable = true;
       languages = {
-        enableLSP = true;
         enableTreesitter = true;
 
         nix.enable = true;
