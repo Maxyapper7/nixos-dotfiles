@@ -134,15 +134,15 @@
     };
   };
 
-  system.autoUpgrade = {
-    enable = true;
-    dates = "04:00";
-    flake = "/home/max/dotfiles";
-    flags = [
-      "--update-input" "nixpkgs"
-    ];
-    allowReboot = true;
-  };
+  # system.autoUpgrade = {
+  #   enable = true;
+  #   dates = "04:00";
+  #   flake = "/home/max/dotfiles";
+  #   flags = [
+  #     "--update-input" "nixpkgs"
+  #   ];
+  #   allowReboot = true;
+  # };
 
   system.stateVersion = "24.11";
 
