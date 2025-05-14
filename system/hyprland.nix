@@ -30,6 +30,8 @@
   programs.nautilus-open-any-terminal.enable = true;
   programs.nautilus-open-any-terminal.terminal = "kitty";
 
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
   programs.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
