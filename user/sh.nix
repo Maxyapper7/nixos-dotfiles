@@ -9,12 +9,9 @@ let
     ls = "eza --icons -l -T -L=1";
     cat = "bat";
     htop = "btm";
-    fd = "fd -Lu";
     neofetch = "disfetch";
-    fetch = "disfetch";
     tailup = "sudo tailscale up --accept-routes --exit-node=toronto";
     taildown = "sudo tailscale down";
-    "," = "comma";
   };
 in
 {
